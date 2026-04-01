@@ -1,0 +1,18 @@
+[Unit]
+Description=My App Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/home/ilyalosenok/app
+ExecStart=/home/ilyalosenok/app/venv/bin/python /home/ilyalosenok/app/app.py
+Restart=on-failure
+RestartSec=5
+StandartOutput=file:/var/log/app/app.log
+StandartError=file:/var/log/app/app-error.log
+
+[Install]
+WantedBy=multi-user.target
